@@ -3,8 +3,8 @@ title: "Replicating the model in Phillips (1996)"
 author: "Dony Indiarto"
 date: "24/07/2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -16,13 +16,13 @@ library(patchwork)
 library(ggplot2)
 ```
 
-## Abstract
+### Abstract
 
 After infection with the human immunodeficiency virus (HIV), the concentration of the virus in the person's plasma increases. The subsequent decrease in concentration a few weeks later was though to result from an HIV-specific immune response. This purported causal relation is investigated with a model of the dynamics of early HIV infection that incorporates no increase in the rate of removal of free virions or virus-infected cells. A pattern of changes in virus concentration similar to that observed in patients is predicted by the model. Thus, the reduction in virus concentration during acute infection may not reflect the ability of the HIV-specific immune response to control virus replication.
 
 ![](data/phillips1996.PNG)  
 
-## A. Variables
+### A. Variables
 
 𝑅(𝑡): number of susceptible CD4+ cells (number, 𝑅(𝑡)≥ 0).  
 𝐿(𝑡): number of latently infected CD4+ cells (number, 𝐿(𝑡)≥0).  
@@ -30,7 +30,7 @@ After infection with the human immunodeficiency virus (HIV), the concentration o
 𝑉(𝑡): amount of virus (number, 𝑉(𝑡)≥0).  
 
 
-## B. Parameters
+### B. Parameters
 
  Γ: rate of production of susceptible CD4+ cells (number/time, Γ≥0).  
 𝜏: fraction of CD4+ cells susceptible to attack by HIV (unitless, 0≤𝜏≤1).  
@@ -41,8 +41,14 @@ After infection with the human immunodeficiency virus (HIV), the concentration o
 𝜋: rate that virus is produced by actively infected CD4+ cells (1/time, 𝜋>0).  
 𝜎: rate of virus removal (1/time, 𝜎>0).  
 
+### C. Differential equations
 
-### C. The model
+$$\frac{dR(t)}{dt} = \Gamma \tau - \mu R(t) - \beta V(t)R(r),$$
+$$\frac{dL(t)}{dt} = \rho \beta V(t)R(t) - \mu L(t) - \beta V(t)R(t),$$
+$$\frac{dE(t)}{dt} = (1- \rho)\beta V(t)R(t) + \alpha L(t) - \delta E(t),$$
+$$\frac{dV(t)}{dt} = \pi E(t) - \sigma V(t).$$
+
+### D. The model
 
 ```{r warning=FALSE}
 # Timestep
