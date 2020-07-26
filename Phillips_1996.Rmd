@@ -20,12 +20,31 @@ library(ggplot2)
 
 After infection with the human immunodeficiency virus (HIV), the concentration of the virus in the person's plasma increases. The subsequent decrease in concentration a few weeks later was though to result from an HIV-specific immune response. This purported causal relation is investigated with a model of the dynamics of early HIV infection that incorporates no increase in the rate of removal of free virions or virus-infected cells. A pattern of changes in virus concentration similar to that observed in patients is predicted by the model. Thus, the reduction in virus concentration during acute infection may not reflect the ability of the HIV-specific immune response to control virus replication.
 
-![](data/phillips1996.PNG)
+![](data/phillips1996.PNG)  
+
+## A. Variables
+
+𝑅(𝑡): number of susceptible CD4+ cells (number, 𝑅(𝑡)≥ 0).  
+𝐿(𝑡): number of latently infected CD4+ cells (number, 𝐿(𝑡)≥0).  
+𝐸(𝑡): number of actively infected CD4+ cells (number, 𝐸(𝑡)≥0).  
+𝑉(𝑡): amount of virus (number, 𝑉(𝑡)≥0).  
 
 
-## The Model
+## B. Parameters
 
-```{r}
+ Γ: rate of production of susceptible CD4+ cells (number/time, Γ≥0).  
+𝜏: fraction of CD4+ cells susceptible to attack by HIV (unitless, 0≤𝜏≤1).  
+𝜇: removal rate of CD4+ cells (1/time, 𝜇≥0).  
+𝛽: rate of T-cell infection (1/number/time, 𝛽>0).  
+𝑝: fraction of infected CD4+ cells that are latently infected (unitless, 1≥𝑝≥0). 𝛼: rate that latent CD4+   cells become activated (1/time, 𝛼≥0).  
+𝛿: death rate/removal of actively infected CD4+ cells (1/time, 𝛿≥𝜇).  
+𝜋: rate that virus is produced by actively infected CD4+ cells (1/time, 𝜋>0).  
+𝜎: rate of virus removal (1/time, 𝜎>0).  
+
+
+### C. The model
+
+```{r warning=FALSE}
 # Timestep
 t <- seq(0,120, by = 1)
 
