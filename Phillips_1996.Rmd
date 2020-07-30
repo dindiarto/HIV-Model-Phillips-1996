@@ -81,7 +81,7 @@ s_CD4_HIV_dynamics_solution <-
     times = t,
     func = viral_load,
     parms = params,
-    method = "euler") %>%
+    method = "rk4") %>%
   as.data.frame()
 
 # load the plotting functions
