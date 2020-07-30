@@ -87,6 +87,6 @@ source("R/phillips_1996_viz.R")
 
 # produce plots
 Vplot + Rplot + LEplot + plot_annotation(tag_levels = 'A')
-ggsave(filename = "Fig_Phillips_1996.png", width = 10, height = 3, units = "in", dpi = 300)
+ggsave(filename = "output/Fig_Phillips_1996.png", width = 10, height = 3, units = "in", dpi = 300)
 ```
 
