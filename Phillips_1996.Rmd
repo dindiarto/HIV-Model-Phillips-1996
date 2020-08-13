@@ -44,7 +44,7 @@ After infection with the human immunodeficiency virus (HIV), the concentration o
 ### C. Differential equations
 
 $$\frac{dR(t)}{dt} = \Gamma \tau - \mu R(t) - \beta V(t)R(r),$$
-$$\frac{dL(t)}{dt} = \rho \beta V(t)R(t) - \mu L(t) - \beta V(t)R(t),$$
+$$\frac{dL(t)}{dt} = \rho \beta V(t)R(t) - \mu L(t) - \alpha L(t),$$
 $$\frac{dE(t)}{dt} = (1- \rho)\beta V(t)R(t) + \alpha L(t) - \delta E(t),$$
 $$\frac{dV(t)}{dt} = \pi E(t) - \sigma V(t).$$
 
