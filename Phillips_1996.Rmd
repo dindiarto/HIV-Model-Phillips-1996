@@ -10,8 +10,6 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(deSolve)
-library(magrittr)
-library(dplyr)
 library(patchwork)
 library(ggplot2)
 ```
@@ -32,11 +30,12 @@ After infection with the human immunodeficiency virus (HIV), the concentration o
 
 ### B. Parameters
 
- Γ: rate of production of susceptible CD4+ cells (number/time, Γ≥0).  
+Γ: rate of production of susceptible CD4+ cells (number/time, Γ≥0).  
 𝜏: fraction of CD4+ cells susceptible to attack by HIV (unitless, 0≤𝜏≤1).  
 𝜇: removal rate of CD4+ cells (1/time, 𝜇≥0).  
 𝛽: rate of T-cell infection (1/number/time, 𝛽>0).  
-𝑝: fraction of infected CD4+ cells that are latently infected (unitless, 1≥𝑝≥0). 𝛼: rate that latent CD4+   cells become activated (1/time, 𝛼≥0).  
+𝑝: fraction of infected CD4+ cells that are latently infected (unitless, 1≥𝑝≥0).
+𝛼: rate that latent CD4+   cells become activated (1/time, 𝛼≥0).  
 𝛿: death rate/removal of actively infected CD4+ cells (1/time, 𝛿≥𝜇).  
 𝜋: rate that virus is produced by actively infected CD4+ cells (1/time, 𝜋>0).  
 𝜎: rate of virus removal (1/time, 𝜎>0).  
@@ -81,13 +80,13 @@ s_CD4_HIV_dynamics_solution <-
     times = t,
     func = viral_load,
     parms = params,
-    method = "euler") %>%
-  as.data.frame()
+    method = "rk4")
 
 # load the plotting functions
 source("R/phillips_1996_viz.R")
 
 # produce plots
-Rplot + VLEplot
+Vplot + Rplot + LEplot + plot_annotation(tag_levels = 'A')
+ggsave(filename = "output/Fig_Phillips_1996.png", width = 10, height = 3, units = "in", dpi = 300)
 ```
 
